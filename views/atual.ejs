@@ -7,6 +7,24 @@
     <title>Sorteio Atual - Sorteios</title>
 </head>
 <body>
-    
+    <h2>Participantes</h2>
+
+    <table border="1">
+        <thead>
+            <tr>
+                <td><strong>Nome</strong></td>
+            </tr>
+        </thead>
+        <tbody>
+            <% data.forEach(function(data){ %>
+
+                <tr>
+                    <td><%= data.name %></td>
+                </tr>
+
+            <% }) %>
+        </tbody>
+    </table>
+    <button><a href="/sorteio">Realizar sorteio</a></button>
 </body>
 </html>

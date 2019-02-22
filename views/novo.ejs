@@ -7,6 +7,16 @@
     <title>Novo Sorteio - Sorteios</title>
 </head>
 <body>
-    
+    <h2>Crie seu sorteio</h2>
+
+    <form action="/novo" method="POST">
+        <label for="name">Nome completo:</label>
+        <input type="text" name="name" placeholder="Participante">
+
+        <button type="submit">Cadastrar</button>
+    </form>
+
+    <button><a href="/">Voltar</a></button>
+    <button><a href="/atual">Sorteio Atual</a></button>
 </body>
 </html>
