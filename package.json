@@ -1,0 +1,23 @@
+{
+  "name": "Sorteio",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Douglashbr/Sorteio.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Douglashbr/Sorteio/issues"
+  },
+  "homepage": "https://github.com/Douglashbr/Sorteio#readme",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
+}
