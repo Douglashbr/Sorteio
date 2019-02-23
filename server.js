@@ -18,7 +18,7 @@ Mongodb.connect(uri, (err, client) =>{
 
     app.listen(3000);
     console.log('Server rodando na porta 3000');
-})
+});
 
 app.get('/', (req, res) =>{
     res.render('index.ejs');
@@ -28,11 +28,11 @@ app.get('/deletar', (req, res) =>{
     db.collection('sorteio').deleteMany();
 
     res.render('novo.ejs');
-})
+});
 
 app.get('/novo', (req, res) =>{
     res.render('novo.ejs');
-})
+});
 
 app.post('/novo', (req, res) =>{
     db.collection('sorteio').insertOne(req.body, (err, results) =>{
@@ -42,36 +42,43 @@ app.post('/novo', (req, res) =>{
 
         res.redirect('/novo');
     });
-})
+});
 
 app.get('/atual', (req, res) =>{
     db.collection('sorteio').find().toArray((err, results) =>{
         if (err) {
             return console.log(err);
         }
-
+        console.log(results);
         res.render('atual.ejs', { data: results });
-    })
-})
+    });
+});
+
 
 app.get('/sorteio', (req, res) =>{
     db.collection('sorteio').find().toArray((err, results) =>{
         if (err) {
-            return console.log(err);
+            console.log(err);
         }
-
         let resultado = [];
 
         results.forEach(function(results){
             resultado.push(results.name);
         })
         let sorteado = resultado[Math.floor(Math.random() * resultado.length)];
-
-        res.render('sorteio.ejs', { data: sorteado });
-    })
-})
+        if (sorteado){
+            res.render('sorteio.ejs', { data: sorteado });
+        }else{
+            res.render('error.ejs', { msg: 'Não há participantes cadastrados'});
+        }
+    });
+});
 
 app.get('/adicionar', (req, res) =>{
     res.render('novo.ejs');
+});
+
+app.get('/error', (req, res) =>{
+    res.render('error.ejs')
 })
 
