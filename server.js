@@ -17,12 +17,18 @@ Mongodb.connect(uri, (err, client) =>{
     db = client.db('douglasdb');
 
     app.listen(3000);
-
+    console.log('Server rodando na porta 3000');
 })
 
 app.get('/', (req, res) =>{
     res.render('index.ejs');
 });
+
+app.get('/deletar', (req, res) =>{
+    db.collection('sorteio').deleteMany();
+
+    res.render('novo.ejs');
+})
 
 app.get('/novo', (req, res) =>{
     res.render('novo.ejs');
@@ -59,9 +65,13 @@ app.get('/sorteio', (req, res) =>{
         results.forEach(function(results){
             resultado.push(results.name);
         })
-        let sorteado = resultado[Math.floor(Math.random * resultado.length)];
-        console.log(resultado[0]);
+        let sorteado = resultado[Math.floor(Math.random() * resultado.length)];
+
         res.render('sorteio.ejs', { data: sorteado });
     })
+})
+
+app.get('/adicionar', (req, res) =>{
+    res.render('novo.ejs');
 })
 
